@@ -1,0 +1,75 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="999593297" file="C:\Users\Rajshekhar\Documents\Project EVM\EVM_Matlab\Simplified Heart rate measure\For Presentation\HRv1.0.1.prj" location="C:\Users\Rajshekhar\Documents\Project EVM\EVM_Matlab\Simplified Heart rate measure\For Presentation" name="HRv1.0.1" target="target.mlapps" target-name="Package App">
+    <param.appname>HRv1.0.1</param.appname>
+    <param.authnamewatermark>raj</param.authnamewatermark>
+    <param.email />
+    <param.company>AGE-WELL</param.company>
+    <param.icon />
+    <param.icons />
+    <param.summary>6 June 4.30pm</param.summary>
+    <param.description />
+    <param.screenshot />
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>C:\Users\Rajshekhar\Documents\Project EVM\EVM_Matlab\Simplified Heart rate measure\For Presentation</param.output>
+    <param.guid>0b93983e-27b0-4457-a9f8-27833113cb07</param.guid>
+    <unset>
+      <param.email />
+      <param.icon />
+      <param.icons />
+      <param.description />
+      <param.screenshot />
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\simple_layout.m</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\acquire_1.m</file>
+      <file>${PROJECT_ROOT}\bp_FIR_zero_phase_transients_removed_1.m</file>
+      <file>${PROJECT_ROOT}\practise_process_1_only_fft.m</file>
+      <file>${PROJECT_ROOT}\simple_layout.fig</file>
+      <file>${PROJECT_ROOT}\video_cropping.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\Rajshekhar\Documents\Project EVM\EVM_Matlab\Simplified Heart rate measure" name="For Presentation" optional="false">C:\Users\Rajshekhar\Documents\Project EVM\EVM_Matlab\Simplified Heart rate measure\For Presentation</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2017a</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.2</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
