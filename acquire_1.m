@@ -15,7 +15,7 @@ Resize='on';
 prompt = {'Enter 1/2/3 for Color Plane : 1. RED 2.GREEN 3.BLUE'};
 dlg_title = 'Color Plane (RGB) choice';
 num_lines = 1;
-defaultans = {'1'};
+defaultans = {'2'};
 
 answer = inputdlg(prompt,dlg_title,num_lines,defaultans,Resize);
   

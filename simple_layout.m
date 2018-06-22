@@ -23,7 +23,7 @@ function varargout = simple_layout(varargin)
 
 % Edit the above text to modify the response to help simple_layout
 
-% Last Modified by GUIDE v2.5 06-Jun-2018 11:15:47
+% Last Modified by GUIDE v2.5 22-Jun-2018 13:56:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -53,7 +53,6 @@ function simple_layout_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to simple_layout (see VARARGIN)
 
-
 % Choose default command line output for simple_layout
 handles.output = hObject;
 
@@ -80,10 +79,7 @@ function uipanel1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uipanel1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 
-
-
 % handles    empty - handles not created until after all CreateFcns called
-
 
 % --- Executes during object creation, after setting all properties.
 function axes1_CreateFcn(hObject, eventdata, handles)
@@ -92,7 +88,6 @@ function axes1_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate axes1
-
 
 % --- Executes during object creation, after setting all properties.
 function output1_CreateFcn(hObject, eventdata, handles)
@@ -105,8 +100,6 @@ function output1_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function bpm_sampling_period_Callback(hObject, eventdata, handles)
 % hObject    handle to bpm_sampling_period (see GCBO)
@@ -129,7 +122,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-
 function bpm_h_Callback(hObject, eventdata, handles)
 % hObject    handle to bpm_h (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -150,7 +142,6 @@ function bpm_h_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 
 
 function bpm_l_Callback(hObject, eventdata, handles)
@@ -216,26 +207,30 @@ start_frame=get(handles.start_frame_select, 'String');
 stop_frame=get(handles.stop_frame_select, 'String');
 L_user=get(handles.L_select, 'String');
 
-video_cropping(video_file,start_frame,stop_frame,L_user);
-%set(handles.crop_video,'String',L_user);
+start_frame_timestamp=video_cropping(video_file,start_frame,stop_frame,L_user);
+set(handles.crop_video,'String',start_frame_timestamp);
+
 
 
 function aquire_f_output_graphs_Callback(hObject, eventdata, handles)
 
+start_frame_timestamp=get(handles.crop_video,'String');
 start_frame=get(handles.start_frame_select, 'String');
 brightness = acquire_1('final_video.avi');
 %Next 3 lines just to get fps of video
 video_file=get(handles.video_select, 'String');
 
-obj=VideoReader(video_file);
-fps=obj.FrameRate;
+%obj=VideoReader(video_file);
+
+fps=30;    % DESIRED FPS from HANDBRAKE
+
 %s_p=str2double(get(handles.bpm_sampling_period));
 %bpm_h=str2double(get(handles.bpm_h));
 %bpm_l=str2double(get(handles.bpm_l));
 start_frame=get(handles.start_frame_select, 'String');  
 stop_frame=get(handles.stop_frame_select, 'String');
 L_frames=get(handles.L_select, 'String');
-heart_beat=practise_process_1_only_fft(brightness,fps,L_frames,start_frame,stop_frame);
+heart_beat=practise_process_1_only_fft(brightness,fps,L_frames,start_frame,stop_frame,start_frame_timestamp);
 set(handles.output1,'string',heart_beat);
 
 function output1_Callback(hObject, eventdata, handles)
@@ -320,4 +315,25 @@ function L_select_Callback(hObject, eventdata, handles)
 function select_handbrake_folder_Callback(hObject, eventdata, handles)
 % hObject    handle to select_handbrake_folder (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in instruction_button.
+function instruction_button_Callback(hObject, eventdata, handles)
+% hObject    handle to instruction_button (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+msgbox({'1- Video file names should not include blanks' '2- Handbrakecli.exe must be in same folder as videos'...
+    '3- To run app, Matlab work folder should be different than folder containing source code (simple_layout.m)'... 
+    '4- If running source code (simple_layout.m), videos and Handbrakecli.exe must be in same folder as source code'...
+    '5- Before re-doing Step 2 (converting part of a video to CFR), it is required to perform Step 3 (area cropping with the mouse), so that the temporary file "time_cropped_video.avi" is closed before being overwritten in Step 2.'},'Instruction List','help');
+
+
+% --- Executes on key press with focus on instruction_button and none of its controls.
+function instruction_button_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to instruction_button (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
 % handles    structure with handles and user data (see GUIDATA)

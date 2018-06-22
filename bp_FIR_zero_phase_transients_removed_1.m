@@ -44,6 +44,11 @@ for i=1:length(output_frame_indices)
     output_frame_indices(i)=output_frame_indices(i)+start_frame;
 end
 
+figure(2);
+plot(y);
+title('Signal after filtering');
+xlabel('frames');
+
 end  
 
 %removed the overall segments auto corr plot : not needed as we dont
